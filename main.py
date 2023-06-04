@@ -9,9 +9,10 @@ import time
 import sys
 from Adafruit_IO import MQTTClient
 
-AIO_FEED_IDS = ["bbc-led", "bbc-temp", "door", "bbc-gas", "router", "computer"]
+AIO_FEED_IDS = ["bbc-led", "bbc-temp", "door", "bbc-gas"]
+# , "router", "computer"]
 AIO_USERNAME = "hjilklong"
-AIO_KEY = "aio_fGPF14hwQ4pj6TYGBJrelYrqKdwn"
+AIO_KEY = "aio_ZbXm45LILMmxcpivwARIInsM1MzZ"
 
 
 def connected(client):
@@ -76,10 +77,12 @@ def processData(data):
         client.publish("bbc-gas", splitData[2])
     if splitData[1] == "DOOR":
         client.publish("door", splitData[2])
-    if splitData[1] == "COMPUTER":
-        client.publish("computer", splitData[2])
-    if splitData[1] == "ROUTER":
-        client.publish("router", splitData[2])
+    if splitData[1] == "LED":
+        client.publish("bbc-led", splitData[2])
+    # if splitData[1] == "COMPUTER":
+    #     client.publish("computer", splitData[2])
+    # if splitData[1] == "ROUTER":
+    #     client.publish("router", splitData[2])
 
 
 mess = ""
